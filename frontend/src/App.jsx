@@ -1,8 +1,8 @@
-import Header from "./components/Header"
+
 function App() {
   return (
     <>
-    <Header />
+    <div className="text-3xl bg-primary-color">You can start now!</div>
     </>
   )
 }
