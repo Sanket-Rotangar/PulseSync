@@ -1,8 +1,9 @@
-import Header from "./components/Header"
+import { Pulsesync } from "./components/Pulsesync"
+
 function App() {
   return (
     <>
-    <Header />
+    <Pulsesync />
     </>
   )
 }
