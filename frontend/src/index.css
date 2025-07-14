@@ -1,9 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap");
-
 :root {
   --btn-primary: #743799;
   --btn-sidebar: #212225;
@@ -12,6 +7,15 @@
   --btn-text: #a3a3a3;
   --btn-accent: #c4a7e7;
   --border-primary: 1px solid #e6e6e6;
+}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.tab-text
+{
+   @apply text-sm md:text-xl font-bold
 }
 
 .ant-input,

@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
-import Company from "./Company-Model.js"; // Import Company model
-import { USER_STATUS } from "../constants/enums.js";
+
 
 const AdminSchema = new mongoose.Schema(
   {

@@ -1,10 +1,13 @@
-import Header from "./components/Header"
+import PulsesyncForm from "./pages/PulsesyncForm"
+
 function App() {
   return (
     <>
-    <Header />
+   < PulsesyncForm/>
     </>
   )
 }
 
 export default App
+
+
