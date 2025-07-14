@@ -2,7 +2,8 @@
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
-    colors: {
+    extend: {
+       colors: {
       "primary-color": "#743799",
       "neutrals-color": "#F8F8F8",
       "card-color": "#f7f7f7",
@@ -13,8 +14,8 @@ module.exports = {
     fontFamily: {
       rubik: ["Rubik", "sans-serif"],
       inter: ["Inter", "sans-serif"],
-    },
-    extend: {},
+    }
+    }
   },
   plugins: [],
 };

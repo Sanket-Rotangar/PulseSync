@@ -1,4 +1,4 @@
-import { Pulsesync } from "./Pulsesync"
+import { Pulsesync } from "./components/Pulsesync"
 
 function App() {
   return (
