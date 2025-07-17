@@ -1,8 +1,13 @@
+// import { Pulsesync } from "./components/Pulsesync"
+import { ProgressSurvey } from "./components/ProgressSurvey"
+import { SmilySurvey } from "./components/SmilySurvey"
 
 function App() {
   return (
     <>
-    <div className="text-3xl bg-primary-color">You can start now!</div>
+    {/* <ProgressSurvey /> */}
+    <SmilySurvey />
+    {/* <Pulsesync /> */}
     </>
   )
 }
