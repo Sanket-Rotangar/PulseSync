@@ -1,9 +1,13 @@
-import { Pulsesync } from "./components/Pulsesync"
+// import { Pulsesync } from "./components/Pulsesync"
+import { ProgressSurvey } from "./components/ProgressSurvey"
+import { SmilySurvey } from "./components/SmilySurvey"
 
 function App() {
   return (
     <>
-    <Pulsesync />
+    {/* <ProgressSurvey /> */}
+    <SmilySurvey />
+    {/* <Pulsesync /> */}
     </>
   )
 }
