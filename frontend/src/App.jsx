@@ -1,9 +1,13 @@
+import { useState } from "react"
 import PulsesyncForm from "./pages/PulsesyncForm"
+import { Pulsesync } from "./pages/Pulsesync"
 
 function App() {
+  const [openform , setopenform] = useState(false)
   return (
     <>
-   < PulsesyncForm/>
+
+    {openform ? <PulsesyncForm prop={setopenform}/> : <Pulsesync prop={setopenform }/>}
     </>
   )
 }
