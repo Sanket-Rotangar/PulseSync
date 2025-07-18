@@ -1,10 +1,12 @@
 import { CalendarCheck2, Plus, ChartColumn, PanelLeft } from "lucide-react";
 import { useState } from "react";
-
-export const Pulsesync = () => {
+export const Pulsesync = ({ prop, role }) => {
   const [value, setToValue] = useState("overview");
   const [active, setactive] = useState(1);
-  function changeContent(value) {
+  const formopen = prop;
+
+ 
+    function changeContent(value) {
     switch (value) {
       case "overview":
         return (
@@ -236,12 +238,14 @@ export const Pulsesync = () => {
               Monitor employee engagement and gather valuable feedback
             </span>
           </div>
-          <button className="bg-blue-600 rounded-md h-11">
-            <h1 className="text-sm font-medium px-2 text-white w-36 flex items-center justify-center">
-              + Create Survey
-            </h1>
-          </button>
-        </div>
+         <div>
+  <button 
+    onClick={() => {formopen(true)}}
+    className="bg-blue-600 rounded-md h-11 text-sm font-medium px-2 text-white w-36 flex items-center justify-center">
+    + Create Survey
+  </button>
+</div>
+</div>
 
         {/* 4-cards/ ShowsAnalytics */}
         <div className="w-full flex flex-col md:flex-row md:justify-around gap-4 px-4">
