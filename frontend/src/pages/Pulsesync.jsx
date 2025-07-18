@@ -1,10 +1,10 @@
 import { CalendarCheck2, Plus, ChartColumn, PanelLeft } from "lucide-react";
 import { useState } from "react";
-export const Pulsesync = ({ prop, role }) => {
+export const Pulsesync = ({ prop, openSurvey}) => {                //removed role parameter
   const [value, setToValue] = useState("overview");
   const [active, setactive] = useState(1);
   const formopen = prop;
-
+  
  
     function changeContent(value) {
     switch (value) {
@@ -69,11 +69,11 @@ export const Pulsesync = ({ prop, role }) => {
                   </button>
                 </div>
                 <div className="details border mt-3 mx-2 rounded-xl  hover:bg-gray-100">
-                  <button className="rounded-md h-11 flex flex-row justify-center items-center px-5 gap-2">
+                  <button className="rounded-md h-11 flex flex-row justify-center items-center px-5 gap-2" onClick={()=>{ openSurvey(true) }}>
                     <div>
                       <Plus size={20} />
                     </div>
-                    <div className="text-base">Review Feedback</div>
+                    <div className="text-base">Fill Survey</div>
                   </button>
                 </div>
               </div>

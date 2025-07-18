@@ -1,15 +1,18 @@
 import { useState } from "react";
+import { ArrowLeft } from "lucide-react";
 
-export const SmilySurvey = () => {
+export const SmilySurvey = ({prop: openSurvey}) => {
   const [selected, setSelected] = useState(null);
   const [currentStep, setCurrentStep] = useState(1);
   const [questIndex, setQuestIndex] = useState(0);
   const steps = ["Welcome", "Q1", "Q2", "Q3", "Q4", "Finish"];
   const emojis = ["😞", "😕", "😐", "🙂", "😊"];
+  
   // const emojiMsg = ["Strongly Disagree", "Neutral", "Agree", "Strongly Agree"];
   const questions = ["Question1", "Question2", "Question3", "Question4", "Question5", "Question6",];
   return (
     <div className="min-h-screen bg-blue-100 flex items-center justify-center">
+       <button className="absolute left-44 top-40 scale-125" onClick={() => openSurvey(false)}><ArrowLeft /></button>
       <div className="w-full max-w-4xl p-4">
         {/* Progress Bar */}
         <div className="flex items-center justify-between mb-6">
