@@ -1,41 +1,54 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ArrowLeft } from "lucide-react";
+import axios from "axios";
 
 export const SmilySurvey = ({prop: openSurvey}) => {
   const [selected, setSelected] = useState(null);
+   const [questions, setQuestions] = useState([]);
   const [currentStep, setCurrentStep] = useState(1);
   const [questIndex, setQuestIndex] = useState(0);
-  const steps = ["Welcome", "Q1", "Q2", "Q3", "Q4", "Finish"];
+  // const steps = ["Welcome", "Q1", "Q2", "Q3", "Q4", "Finish"];
   const emojis = ["😞", "😕", "😐", "🙂", "😊"];
   
+
+  useEffect(() => {
+    const fetchQuestions = async () => {
+      try {
+        const res = await axios.get("http://localhost:5000/survey"); // Adjust if hosted
+        setQuestions(res.data);
+      } catch (err) {
+        console.error("Error fetching questions:", err);
+      }
+    };
+
+    fetchQuestions();
+  }, []);
+
   // const emojiMsg = ["Strongly Disagree", "Neutral", "Agree", "Strongly Agree"];
-  const questions = ["Question1", "Question2", "Question3", "Question4", "Question5", "Question6",];
+  // const questions = ["Question1", "Question2", "Question3", "Question4", "Question5", "Question6",];
   return (
     <div className="min-h-screen bg-blue-100 flex items-center justify-center">
        <button className="absolute left-44 top-40 scale-125" onClick={() => openSurvey(false)}><ArrowLeft /></button>
       <div className="w-full max-w-4xl p-4">
         {/* Progress Bar */}
         <div className="flex items-center justify-between mb-6">
-          {steps.map((label, index) => (
+          {questions.map((label, index) => (
             <div
               key={index}
               className="flex-1 flex flex-col items-center relative"
             >
               <div
                 className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-white z-[5]
-                ${index + 1 === currentStep ? "bg-blue-600 scale-150 ring-2" : "bg-gray-300"}`}
-              >
-                {/* {" "} */}
+                ${index === questIndex ? "bg-blue-600 scale-150 ring-2" : "bg-gray-300"}`}
+              > 
                 {index + 1}
               </div>
-              <div className="text-xs mt-3">{label}</div>
+              <div className="text-xs mt-3">Q{index + 1}</div>
               {/* Progress-Line */}
-              {index < steps.length - 1 && (
+              {index < questions.length - 1 && (
                 <div className="absolute top-4  ml-40 w-full h-1 bg-gray-300 z-[0]">
                   <div
-                    className={`h-1 ${
-                      index + 1 < currentStep ? "bg-blue-600" : ""
-                    }`}
+                    className={`h-1 ${index < questIndex ? "bg-blue-600" : ""}`}
                   ></div>
                 </div>
               )}
@@ -46,7 +59,7 @@ export const SmilySurvey = ({prop: openSurvey}) => {
         {/* Question Card */}
         <div className="bg-white shadow-blue-300 shadow-2xl rounded-xl p-6 text-center ring-1 ring-blue-500">
           <h2 className="text-lg font-semibold mb-4">
-            {questions[questIndex]}
+           {questions.length === 0 ? "Loading..." : questions[questIndex].question}
           </h2>
             
           {/* Emoji Scale */}
@@ -75,17 +88,25 @@ export const SmilySurvey = ({prop: openSurvey}) => {
                 setCurrentStep(Math.max(1, currentStep - 1));
                 setQuestIndex(Math.max(0, questIndex - 1));
               }}
+               disabled={questIndex === 0}
             >
               Back
             </button>
             <button
               className="px-6 py-2 bg-blue-500 text-white rounded-xl hover:bg-blue-700"
-              onClick={() => {
-                setCurrentStep(Math.min(steps.length, currentStep + 1));
-                setQuestIndex(Math.min(questions.length -1 , questIndex + 1));
+             onClick={() => {
+                if (questIndex < questions.length - 1) {
+                  setCurrentStep(currentStep + 1);
+                  setQuestIndex(questIndex + 1);
+                  setSelected(null);
+                } else {
+                  alert("✅ Survey Completed!");
+                  // Optional: submit answers
+                }
               }}
+              disabled={questions.length === 0}
             >
-              Next
+            {questIndex === questions.length - 1 ? "Finish" : "Next"}
             </button>
           </div>
         </div>

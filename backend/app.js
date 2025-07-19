@@ -2,7 +2,7 @@ import express from "express";
 import axios from "axios";
 import cors from "cors";
 import mongoose from "mongoose";
-import { survey } from './models/serverResponse-model.js';
+import { Survey } from './models/serverResponse-model.js';
 
 const app = express();
 app.use(cors());
@@ -50,7 +50,7 @@ app.post("/api/ask", async (req, res) => {
 app.post('/survey', async (req, res) => {
   try {
     const data = req.body;
-    const saved = await survey.insertMany(data);
+    const saved = await Survey.insertMany(data);
     res.json({ message: "✅ Survey questions saved", saved });
   } catch (err) {
     console.error("❌ Error saving survey:", err);
@@ -58,17 +58,11 @@ app.post('/survey', async (req, res) => {
   }
 });
 
-// ✅ Route: /survey (saves generated questions to MongoDB)
-app.post('/getsurvey', async (req, res) => {
-  try {
-    const data = req.body;
-    const saved = await survey.insertMany(data);
-    res.json({ message: "✅ Survey questions saved", saved });
-  } catch (err) {
-    console.error("❌ Error saving survey:", err);
-    res.status(500).json({ error: "Failed to save survey", detail: err.message });
-  }
-});
+app.get('/survey', async (req, res) => {
+    const questions = await Survey.find();
+    res.json(questions);
+})
+
 const PORT = 5000;
 app.listen(PORT, () => {
   console.log(`🚀 Server running on http://localhost:${PORT}`);

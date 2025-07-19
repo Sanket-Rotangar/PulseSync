@@ -27,7 +27,7 @@ const AnswerSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
-}, { _id: false });
+}, { _id: true });
 
 
 const EmployeeResponseSchema = new mongoose.Schema({
@@ -64,9 +64,9 @@ const SurveyResponseSchema = new mongoose.Schema({
 }, { timestamps: true, collection: 'SurveyResponse' });
 
 const SurveyResponse = mongoose.model('SurveyResponse', SurveyResponseSchema);
-const survey = mongoose.model('survey',AnswerSchema );
+const Survey = mongoose.model('survey', AnswerSchema );
 export 
 {
   SurveyResponse,
- survey 
+ Survey 
 };
